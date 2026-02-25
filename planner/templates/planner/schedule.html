@@ -1,0 +1,18 @@
+{% extends 'planner/base.html' %}
+{% block content %}
+<h2>Shift Schedules</h2>
+<table>
+  <tr><th>Date</th><th>Department</th><th>Shift</th><th>Staff</th><th>Role</th></tr>
+  {% for s in assignments %}
+  <tr>
+    <td>{{ s.date }}</td>
+    <td>{{ s.department.name }}</td>
+    <td>{{ s.get_shift_display }}</td>
+    <td>{{ s.staff.full_name }}</td>
+    <td>{{ s.staff.get_role_display }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="5">No schedule assignments yet.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

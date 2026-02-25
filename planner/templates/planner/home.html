@@ -1,0 +1,21 @@
+{% extends 'planner/base.html' %}
+{% block content %}
+<section class="hero">
+  <h2>Predictive Workforce Intelligence for Hospitals</h2>
+  <p>
+    Upload historical workload data, forecast patient demand, and auto-generate optimized shift
+    rosters with AI + operations research.
+  </p>
+  <ul>
+    <li>Forecast patient admissions and bed occupancy by department</li>
+    <li>Derive doctor / nurse / support staffing demand</li>
+    <li>Generate fairness-aware shift schedules with constraints</li>
+    <li>Track real-time alerts for understaffing and overload risk</li>
+  </ul>
+  {% if user.is_authenticated %}
+  <a class="btn" href="{% url 'planner:dashboard' %}">Open Dashboard</a>
+  {% else %}
+  <a class="btn" href="{% url 'login' %}">Login to Start</a>
+  {% endif %}
+</section>
+{% endblock %}

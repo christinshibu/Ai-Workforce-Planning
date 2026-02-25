@@ -1,0 +1,9 @@
+{% extends 'planner/base.html' %}
+{% block content %}
+<h2>Sign in</h2>
+<form method="post" class="form-card">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Login</button>
+</form>
+{% endblock %}
