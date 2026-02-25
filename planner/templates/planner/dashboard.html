@@ -1,0 +1,40 @@
+{% extends 'planner/base.html' %}
+{% block content %}
+<h2>Operational Dashboard</h2>
+<div class="cards">
+  <div class="card"><h3>Departments</h3><p>{{ department_count }}</p></div>
+  <div class="card"><h3>Workload Records</h3><p>{{ workload_count }}</p></div>
+  <div class="card"><h3>Forecast Rows</h3><p>{{ forecast_count }}</p></div>
+  <div class="card"><h3>Today's Assignments</h3><p>{{ today_assignments }}</p></div>
+  <div class="card"><h3>Open Alerts</h3><p>{{ unread_alerts }}</p></div>
+</div>
+
+<section>
+  <h3>Forecast Preview</h3>
+  <table>
+    <tr><th>Department</th><th>Date</th><th>Patients</th><th>Bed Occupancy</th><th>D/N/S</th></tr>
+    {% for f in forecast_preview %}
+    <tr>
+      <td>{{ f.department.name }}</td>
+      <td>{{ f.forecast_date }}</td>
+      <td>{{ f.predicted_patients|floatformat:1 }}</td>
+      <td>{{ f.predicted_bed_occupancy|floatformat:1 }}%</td>
+      <td>{{ f.required_doctors }}/{{ f.required_nurses }}/{{ f.required_support }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No forecasts available.</td></tr>
+    {% endfor %}
+  </table>
+</section>
+
+<section>
+  <h3>Latest Alerts</h3>
+  <ul class="alert-list" id="live-alerts">
+    {% for alert in latest_alerts %}
+      <li class="sev-{{ alert.severity }}">[{{ alert.department.name }}] {{ alert.message }}</li>
+    {% empty %}
+      <li>No active alerts.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'planner/base.html' %}
+{% block content %}
+<h2>Generate Forecast and Optimized Schedule</h2>
+<form method="post" class="form-card">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Run AI Forecast + Optimizer</button>
+</form>
+{% endblock %}

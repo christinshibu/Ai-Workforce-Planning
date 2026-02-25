@@ -1,0 +1,10 @@
+{% extends 'planner/base.html' %}
+{% block content %}
+<h2>Upload Hospital Workload CSV</h2>
+<p>Expected columns: department, date, shift, patient_admissions, opd_visits, bed_occupancy_rate, emergency_cases</p>
+<form method="post" enctype="multipart/form-data" class="form-card">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Upload & Process</button>
+</form>
+{% endblock %}
